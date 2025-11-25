@@ -51,6 +51,7 @@
 <circle cx="110" cy="170" r="25" fill="#FFB6C1"/>
 <circle cx="290" cy="170" r="25" fill="#FFB6C1"/>
 <ellipse cx="200" cy="220" rx="80" ry="70" fill="#F5DEB3"/>
+
 <circle cx="160" cy="190" r="15" fill="#000"/>
 <circle cx="240" cy="190" r="15" fill="#000"/>
 <circle cx="157" cy="187" r="5" fill="#FFF"/>
