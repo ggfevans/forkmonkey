@@ -152,6 +152,23 @@
       },
       "story": "\ud83c\udf89 Your monkey was born!",
       "svg_filename": "2025-12-21_20-15_monkey.svg"
+    },
+    {
+      "timestamp": "2025-12-21T20:47:20.971930",
+      "dna_hash": "4bd4fac7e12fc682",
+      "generation": 1,
+      "mutation_count": 0,
+      "rarity_score": 13.333333333333334,
+      "traits": {
+        "body_color": "tan",
+        "face_expression": "cool",
+        "accessory": "bow",
+        "pattern": "stars",
+        "background": "sunset",
+        "special": "none"
+      },
+      "story": "\ud83c\udf89 Your monkey was born!",
+      "svg_filename": "2025-12-21_20-47_monkey.svg"
     }
   ]
 }
