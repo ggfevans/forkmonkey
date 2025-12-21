@@ -1,12 +1,12 @@
 {
-  "last_updated": "2025-12-21T13:00:38.775278+00:00",
-  "total_monkeys": 16,
-  "active_today": 16,
+  "last_updated": "2025-12-21T20:52:11.802823+00:00",
+  "total_monkeys": 22,
+  "active_today": 22,
   "generations": {
-    "1": 11,
-    "2": 5
+    "1": 13,
+    "2": 9
   },
-  "avg_rarity": 20.0,
+  "avg_rarity": 19.39,
   "max_rarity": 40.0,
   "min_rarity": 10.0,
   "rarest_trait": {
@@ -17,61 +17,74 @@
   "most_common_trait": {
     "trait": "special",
     "value": "none",
-    "count": 12
+    "count": 15
   },
   "trait_distribution": {
     "body_color": {
-      "tan": 6,
-      "brown": 3,
+      "tan": 10,
+      "purple": 1,
+      "beige": 1,
+      "golden": 2,
+      "brown": 2,
       "bronze": 1,
       "holographic": 1,
-      "golden": 1,
       "silver": 2,
       "blue": 1,
       "gray": 1
     },
     "face_expression": {
-      "neutral": 2,
-      "enlightened": 2,
+      "sleepy": 2,
+      "neutral": 4,
+      "happy": 4,
+      "curious": 1,
+      "cool": 2,
+      "enlightened": 1,
       "surprised": 2,
       "excited": 1,
       "wise": 2,
-      "happy": 3,
       "winking": 2,
-      "sleepy": 1,
       "legendary": 1
     },
     "accessory": {
-      "bandana": 2,
+      "horns": 1,
+      "laser_eyes": 2,
+      "none": 5,
+      "bow": 3,
+      "sunglasses": 2,
       "headphones": 2,
       "monocle": 2,
-      "none": 5,
-      "bow": 1,
-      "simple_hat": 4
+      "simple_hat": 4,
+      "bandana": 1
     },
     "pattern": {
+      "gradient": 4,
       "solid": 5,
-      "stripes": 1,
+      "spots": 6,
+      "stripes": 2,
+      "fractals": 1,
       "stars": 1,
       "diamonds": 1,
-      "gradient": 3,
       "swirls": 1,
-      "spots": 3,
       "hearts": 1
     },
     "background": {
-      "mountains": 2,
-      "sunset": 3,
-      "beach": 3,
+      "sunset": 4,
       "blue_sky": 3,
+      "white": 2,
+      "green_grass": 1,
+      "forest": 1,
+      "city": 3,
+      "beach": 3,
+      "mountains": 1,
       "volcano": 1,
       "space": 2,
-      "underwater": 1,
-      "white": 1
+      "underwater": 1
     },
     "special": {
-      "shadow": 3,
-      "none": 12,
+      "shadow": 4,
+      "energy": 1,
+      "aura": 1,
+      "none": 15,
       "sparkles": 1
     }
   }
