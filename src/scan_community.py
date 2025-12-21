@@ -53,11 +53,22 @@ def scan_community():
         
         # Scan each repo and collect monkey data
         monkeys = []
-        for r in repos_to_scan:
-            monkey = scan_repo(r, target_repo.full_name)
+        for repo_tuple in repos_to_scan:
+            repo, degree = repo_tuple
+            monkey = scan_repo(repo, target_repo.full_name, degree)
             if monkey:
                 monkeys.append(monkey)
-                print(f"✅ Found monkey in {r.full_name}")
+                degree_label = get_degree_label(degree)
+                print(f"✅ Found monkey in {repo.full_name} ({degree_label})")
+        
+        # Print summary by degree
+        degree_counts = {}
+        for m in monkeys:
+            d = m.get("degree", 0)
+            degree_counts[d] = degree_counts.get(d, 0) + 1
+        print(f"\n📊 Degree breakdown:")
+        for d in sorted(degree_counts.keys()):
+            print(f"   {get_degree_label(d)}: {degree_counts[d]} monkeys")
         
         print(f"\n✨ Scan complete! Discovered {len(monkeys)} monkeys.")
         
@@ -76,32 +87,69 @@ def scan_community():
         exit(1)
 
 
-def collect_repos(target_repo):
-    """Collect all repos in the network (root + forks)."""
-    repos = [target_repo]
+def collect_repos(target_repo, max_depth=3, max_total=200):
+    """Collect all repos in the network (root + nested forks up to max_depth levels).
     
-    try:
-        forks = target_repo.get_forks()
-        # Get up to 100 forks (2 pages)
-        for page_num in range(2):
+    Args:
+        target_repo: The root repository to scan
+        max_depth: Maximum depth to scan (1=direct forks, 2=forks of forks, 3=third level)
+        max_total: Maximum total repos to collect
+        
+    Returns:
+        List of tuples: (repo, degree) where degree is the distance from root (0=root, 1=1st degree, etc.)
+    """
+    repos = [(target_repo, 0)]  # (repo, degree)
+    seen = {target_repo.full_name}
+    queue = [(target_repo, 0)]  # BFS queue with (repo, current_depth)
+    
+    while queue and len(repos) < max_total:
+        current_repo, current_depth = queue.pop(0)
+        
+        # Stop if we've reached max depth
+        if current_depth >= max_depth:
+            continue
+        
+        try:
+            forks = current_repo.get_forks()
+            # Get up to 50 forks per repo (1 page)
             try:
-                page = forks.get_page(page_num)
+                page = forks.get_page(0)
                 for fork in page:
-                    repos.append(fork)
-                    if len(repos) >= 100:
-                        break
+                    if fork.full_name not in seen and len(repos) < max_total:
+                        seen.add(fork.full_name)
+                        fork_degree = current_depth + 1
+                        repos.append((fork, fork_degree))
+                        queue.append((fork, fork_degree))
+                        
+                        degree_label = get_degree_label(fork_degree)
+                        print(f"  📍 Found {degree_label} fork: {fork.full_name}")
             except Exception:
-                break
-            if len(repos) >= 100:
-                break
-    except Exception as e:
-        print(f"⚠️ Error fetching forks: {e}")
+                pass
+        except Exception as e:
+            print(f"⚠️ Error fetching forks of {current_repo.full_name}: {e}")
     
     return repos
 
 
-def scan_repo(repo, root_name):
-    """Scan a single repo for monkey data."""
+def get_degree_label(degree):
+    """Get human-readable label for fork degree."""
+    labels = {
+        0: "root",
+        1: "1st degree",
+        2: "2nd degree", 
+        3: "3rd degree"
+    }
+    return labels.get(degree, f"{degree}th degree")
+
+
+def scan_repo(repo, root_name, degree=0):
+    """Scan a single repo for monkey data.
+    
+    Args:
+        repo: GitHub repository object
+        root_name: Full name of the root repository
+        degree: Fork degree (0=root, 1=1st degree, 2=2nd degree, 3=3rd degree)
+    """
     try:
         # Calculate age from creation
         now = datetime.now(timezone.utc)
@@ -114,6 +162,8 @@ def scan_repo(repo, root_name):
             "full_name": repo.full_name,
             "url": repo.html_url,
             "is_root": repo.full_name == root_name,
+            "degree": degree,
+            "degree_label": get_degree_label(degree),
             "parent": repo.parent.full_name if repo.fork and repo.parent else None,
             "created_at": repo.created_at.isoformat(),
             "updated_at": repo.updated_at.isoformat() if repo.updated_at else None,
@@ -206,6 +256,8 @@ def generate_leaderboard(monkeys):
             "age_days": stats.get("age_days", 0),
             "mutation_count": stats.get("mutation_count", 0),
             "is_root": monkey["is_root"],
+            "degree": monkey.get("degree", 0),
+            "degree_label": monkey.get("degree_label", "root"),
             "monkey_svg": monkey.get("monkey_svg")
         })
     
@@ -241,6 +293,8 @@ def generate_family_tree(root_name, monkeys):
                 "parent": parent,
                 "children": [],
                 "is_root": monkey["is_root"],
+                "degree": monkey.get("degree", 0),
+                "degree_label": monkey.get("degree_label", "root"),
                 "rarity_score": monkey.get("monkey_stats", {}).get("rarity_score", 0),
                 "generation": monkey.get("monkey_stats", {}).get("generation", 1),
                 "monkey_svg": monkey.get("monkey_svg")
