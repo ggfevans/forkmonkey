@@ -817,11 +817,13 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-md);
+    overflow: hidden;
 }
 
 .evolution-card-preview svg {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .evolution-card-info {

@@ -252,7 +252,7 @@ const ForkMonkey = {
     /**
      * Render Evolution Timeline
      */
-    renderEvolution() {
+    async renderEvolution() {
         const timeline = document.getElementById('evolution-timeline');
         const history = this.data.history;
 
@@ -271,7 +271,21 @@ const ForkMonkey = {
         const entries = history.entries.slice().reverse(); // Most recent first
         document.getElementById('evolution-count').textContent = entries.length;
 
-        timeline.innerHTML = entries.map((entry, index) => {
+        // Show loading state
+        timeline.innerHTML = `
+            <div class="loading-state">
+                <div class="loader"></div>
+                <p>Loading evolution snapshots...</p>
+            </div>
+        `;
+
+        // Load SVGs for each entry
+        const entriesWithSvgs = await Promise.all(entries.map(async (entry, index) => {
+            const svgContent = await this.getEvolutionSvg(entry.timestamp);
+            return { ...entry, svgContent, originalIndex: index };
+        }));
+
+        timeline.innerHTML = entriesWithSvgs.map((entry, index) => {
             const date = new Date(entry.timestamp);
             const dateStr = date.toLocaleDateString('en-US', {
                 weekday: 'short',
@@ -284,12 +298,17 @@ const ForkMonkey = {
 
             // Truncate story for display
             const story = entry.story || 'Evolution occurred';
-            const shortStory = story.length > 80 ? story.substring(0, 77) + '...' : story;
+            const shortStory = story.length > 100 ? story.substring(0, 97) + '...' : story;
+
+            // Use SVG if available, otherwise show emoji
+            const previewContent = entry.svgContent
+                ? entry.svgContent
+                : '<div style="font-size: 2.5rem;">🐵</div>';
 
             return `
                 <div class="evolution-card" onclick="ForkMonkey.showEvolutionDetail(${index})" style="animation-delay: ${index * 0.02}s">
                     <div class="evolution-card-preview">
-                        <div style="font-size: 2.5rem;">🐵</div>
+                        ${previewContent}
                     </div>
                     <div class="evolution-card-info">
                         <div class="evolution-date">${dateStr}</div>
@@ -306,12 +325,56 @@ const ForkMonkey = {
     },
 
     /**
+     * Get evolution SVG for a specific timestamp
+     * SVGs are stored in monkey_evolution with format: YYYY-MM-DD_HH-mm_monkey.svg
+     */
+    async getEvolutionSvg(timestamp) {
+        const basePath = this.getBasePath();
+        const date = new Date(timestamp);
+
+        // Format: YYYY-MM-DD_HH-mm_monkey.svg
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        const filename = `${year}-${month}-${day}_${hours}-${minutes}_monkey.svg`;
+        const svgPath = `${basePath}monkey_evolution/${filename}`;
+
+        // Check cache first
+        if (!this.svgCache) this.svgCache = {};
+        if (this.svgCache[filename]) {
+            return this.svgCache[filename];
+        }
+
+        try {
+            const response = await fetch(svgPath);
+            if (response.ok) {
+                const svgContent = await response.text();
+                this.svgCache[filename] = svgContent;
+                return svgContent;
+            }
+        } catch (error) {
+            // SVG not available for this timestamp
+        }
+
+        return null;
+    },
+
+    /**
      * Show evolution entry detail in modal
      */
-    showEvolutionDetail(index) {
+    async showEvolutionDetail(index) {
         const entries = this.data.history.entries.slice().reverse();
         const entry = entries[index];
         if (!entry) return;
+
+        // Get actual SVG for this entry
+        const svgContent = await this.getEvolutionSvg(entry.timestamp);
+        const svgDisplay = svgContent
+            ? `<div style="width: 200px; height: 200px; margin: 0 auto;">${svgContent}</div>`
+            : '<div style="font-size: 4rem; margin-bottom: 16px;">🐵</div>';
 
         const date = new Date(entry.timestamp);
         const dateStr = date.toLocaleDateString('en-US', {
@@ -332,8 +395,8 @@ const ForkMonkey = {
 
         const content = `
             <div style="text-align: center; margin-bottom: 24px;">
-                <div style="font-size: 4rem; margin-bottom: 16px;">🐵</div>
-                <h3 style="color: var(--primary); font-family: var(--font-display); font-size: 0.9rem;">${dateStr}</h3>
+                ${svgDisplay}
+                <h3 style="color: var(--primary); font-family: var(--font-display); font-size: 0.9rem; margin-top: 16px;">${dateStr}</h3>
             </div>
             
             <div style="margin-bottom: 24px;">
