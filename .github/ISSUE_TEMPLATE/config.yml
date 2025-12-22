@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🐵 Adopt Your Own Monkey
+    url: https://roeiba.github.io/forkMonkey/?utm_source=github_issues&utm_medium=github&utm_campaign=adoption#adopt
+    about: Don't have a monkey yet? Get one for free in 30 seconds!
+  - name: 🌐 Live Dashboard
+    url: https://roeiba.github.io/forkMonkey/?utm_source=github_issues&utm_medium=github&utm_campaign=dashboard
+    about: View the leaderboard, family tree, and community gallery
+  - name: 📖 Documentation
+    url: https://github.com/roeiba/forkMonkey/blob/main/DEVELOPMENT.md
+    about: Developer documentation for local setup and contributing
+  - name: 💬 Discussions (Coming Soon)
+    url: https://github.com/roeiba/forkMonkey/discussions
+    about: General questions and community chat

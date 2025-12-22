@@ -4,7 +4,7 @@
 
 ### **Your Digital Pet That Lives Forever on GitHub**
 
-[![Live Demo](https://img.shields.io/badge/🎮_LIVE_DEMO-Play_Now-ff0055?style=for-the-badge)](https://roeiba.github.io/forkMonkey/)
+[![Live Demo](https://img.shields.io/badge/🎮_LIVE_DEMO-Play_Now-ff0055?style=for-the-badge)](https://roeiba.github.io/forkMonkey/?utm_source=readme&utm_medium=github&utm_campaign=hero)
 [![Fork Now](https://img.shields.io/github/forks/roeiba/forkMonkey?style=for-the-badge&label=🍴%20Fork%20Your%20Monkey&color=00ff88)](https://github.com/roeiba/forkMonkey/fork)
 [![Stars](https://img.shields.io/github/stars/roeiba/forkMonkey?style=for-the-badge&color=ffd700)](https://github.com/roeiba/forkMonkey)
 
@@ -17,7 +17,7 @@
 
 <br>
 
-[**🎮 See Live Demo**](https://roeiba.github.io/forkMonkey/) • [**🍴 Fork Your Monkey**](https://github.com/roeiba/forkMonkey/fork) • [**📖 How It Works**](#how-it-works)
+[**🎮 See Live Demo**](https://roeiba.github.io/forkMonkey/?utm_source=readme&utm_medium=github&utm_campaign=nav) • [**🍴 Fork Your Monkey**](https://github.com/roeiba/forkMonkey/fork) • [**📖 How It Works**](#how-it-works)
 
 </div>
 
@@ -42,7 +42,7 @@ Your ForkMonkey is a digital pet that:
 
 <div align="center">
 
-### 🎮 [**LIVE DEMO →**](https://roeiba.github.io/forkMonkey/)
+### 🎮 [**LIVE DEMO →**](https://roeiba.github.io/forkMonkey/?utm_source=readme&utm_medium=github&utm_campaign=demo_section)
 
 *View the dashboard, leaderboard, family tree, and community gallery!*
 
@@ -155,7 +155,7 @@ Unlock 12 achievements: First Hatch, Week Warrior, Diamond Hands, and more!
 | 🥉 | loukasgr/forkMonkey | 31.7 |
 | ... | **Your monkey could be here!** | ??? |
 
-[**View Full Leaderboard →**](https://roeiba.github.io/forkMonkey/)
+[**View Full Leaderboard →**](https://roeiba.github.io/forkMonkey/?utm_source=readme&utm_medium=github&utm_campaign=leaderboard#leaderboard)
 
 ---
 
@@ -286,6 +286,6 @@ MIT License — Fork, breed, and evolve freely!
 
 <br>
 
-**[🎮 Live Demo](https://roeiba.github.io/forkMonkey/)** • **[🍴 Fork Now](https://github.com/roeiba/forkMonkey/fork)** • **[⭐ Star](https://github.com/roeiba/forkMonkey)**
+**[🎮 Live Demo](https://roeiba.github.io/forkMonkey/?utm_source=readme&utm_medium=github&utm_campaign=footer)** • **[🍴 Fork Now](https://github.com/roeiba/forkMonkey/fork)** • **[⭐ Star](https://github.com/roeiba/forkMonkey)**
 
 </div>

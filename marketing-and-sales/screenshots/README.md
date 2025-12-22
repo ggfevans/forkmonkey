@@ -2,6 +2,15 @@
 
 > 📸 Ready-to-use assets for **peerpush.net** and other marketing submissions
 
+## Promotional Videos (MP4)
+Polished video demos located in `../promo_videos/` (parent directory):
+
+| File | Description | Best For |
+|------|-------------|----------|
+| `promo_full_walkthrough.mp4` | **Complete App Tour** (Dashboard, Evolution, Tree, Community) | **PeerPush Launch** |
+| `promo_main_features.mp4` | **Core Features** (Dashboard, Evolution, Tree) | Rapid Demos |
+| `promo_social_features.mp4` | **Social Features** (Community, Leaderboard) | Social Proof |
+
 ## Screenshots (PNG)
 
 | # | File | Description |
@@ -41,6 +50,21 @@ Recommended order for showcasing the app:
 3. **Feature 2**: `05_community.png` - Community & social aspect
 4. **Feature 3**: `06_family_tree.png` - Fork visualization
 5. **Gamification**: `01_leaderboard.png` - Competitive element
+
+## Tools & Regeneration
+A helper script `process_videos.py` is located in the parent directory (`marketing-and-sales/`).
+It converts the WebP recordings into the polished MP4 promos using `ffmpeg` and `Pillow`.
+
+**Requirements**:
+- Python 3
+- `Pillow` (`pip install Pillow`)
+- `ffmpeg` (e.g., `brew install ffmpeg`)
+
+**To regenerate videos:**
+```bash
+cd marketing-and-sales
+python process_videos.py
+```
 
 ---
 *Last updated: December 21, 2025*

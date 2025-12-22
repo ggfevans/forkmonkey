@@ -1,0 +1,86 @@
+name: 🐛 Bug Report
+description: Something isn't working as expected
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! 🐵
+        
+        Please fill out the sections below to help us understand and fix the issue.
+
+  - type: input
+    id: monkey-repo
+    attributes:
+      label: Your Monkey's Repository
+      description: Link to your forked ForkMonkey repo (if applicable)
+      placeholder: https://github.com/your-username/forkMonkey
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      description: A clear and concise description of what you expected
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area is affected?
+      options:
+        - 🌐 Web Dashboard (roeiba.github.io/forkMonkey)
+        - 🔄 GitHub Actions / Daily Evolution
+        - 🎨 Monkey Visualization / SVG
+        - 🧬 Genetics / Breeding
+        - 📊 Leaderboard / Community Data
+        - 🌳 Family Tree
+        - 📱 Mobile Experience
+        - 🔧 Local Development
+        - ❓ Other / Unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce the issue?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs / Screenshots
+      description: |
+        If applicable, add screenshots or paste any error logs from:
+        - Browser console (F12 → Console)
+        - GitHub Actions run logs
+      render: shell
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues to ensure this isn't a duplicate
+          required: true
+        - label: I am running the latest version of ForkMonkey
+          required: false

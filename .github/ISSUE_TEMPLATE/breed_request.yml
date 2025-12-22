@@ -1,0 +1,80 @@
+name: 🧬 Breed Request
+description: Request to breed your monkey with a specific parent
+title: "[Breed]: I want traits from..."
+labels: ["breeding", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 🧬 Breed Request
+        
+        Want your monkey to inherit specific traits from another monkey in the network?
+        
+        Fill out this form and we'll guide you through the breeding process!
+        
+        **How breeding works:**
+        - Fork the parent monkey's repo → Your new monkey inherits ~50% of their traits
+        - Random mutations add another layer of uniqueness
+        - Rare traits have a chance to be passed down!
+
+  - type: input
+    id: your-monkey
+    attributes:
+      label: Your Current Monkey
+      description: Link to your ForkMonkey repository
+      placeholder: https://github.com/your-username/forkMonkey
+    validations:
+      required: true
+
+  - type: input
+    id: target-parent
+    attributes:
+      label: Target Parent Monkey
+      description: Which monkey do you want to breed with? (Link to their repo)
+      placeholder: https://github.com/desired-parent/forkMonkey
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired-traits
+    attributes:
+      label: What traits are you hoping to get?
+      description: |
+        Which specific traits attracted you to this parent?
+        Check the parent's README or dashboard to see their traits.
+      placeholder: |
+        - Golden body color (rare!)
+        - Sunglasses accessory
+        - Galaxy background
+    validations:
+      required: true
+
+  - type: dropdown
+    id: breeding-method
+    attributes:
+      label: Preferred breeding method
+      description: How would you like to create the offspring?
+      options:
+        - 🔧 Manual — I'll fork the parent repo myself
+        - 🔐 Trustless — Create a new monkey and transfer it to me
+        - ✨ Full Trust — Use the adoption wizard (one-click)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: understand
+    attributes:
+      label: I understand that...
+      options:
+        - label: Breeding creates a NEW monkey (my current monkey stays the same)
+          required: true
+        - label: Trait inheritance is random — I might not get all desired traits
+          required: true
+        - label: My new monkey will evolve independently after creation
+          required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Anything else you want us to know?

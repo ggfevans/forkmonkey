@@ -1,0 +1,80 @@
+name: 💡 Feature Request
+description: Suggest an idea for ForkMonkey
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got an idea to make ForkMonkey even better? We're all ears! 🐵
+        
+        The best features often come from the community.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear and concise description of what the problem is
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: Any alternative solutions or features you've considered
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area does this affect?
+      options:
+        - 🧬 Genetics / Traits / Breeding
+        - 🎨 Visualizer / Monkey Appearance
+        - 🤖 AI Evolution Engine
+        - 🌐 Web Dashboard
+        - 🏆 Leaderboard / Gamification
+        - 🌳 Family Tree
+        - 📱 Mobile Experience
+        - 🔄 GitHub Actions / Automation
+        - 🎮 New Game Mechanics
+        - 📣 Social / Sharing Features
+        - 🔧 Developer Experience
+        - ❓ Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: How impactful would this be?
+      options:
+        - 🚀 Game-changer — Core to the experience
+        - ⭐ High — Would significantly improve UX
+        - 👍 Medium — Nice to have
+        - 🤷 Low — Minor improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context, mockups, or screenshots about the feature request
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Would you be willing to help implement this?
+      options:
+        - label: Yes, I'd like to contribute a PR for this feature!
+        - label: I can help test if someone else implements it
